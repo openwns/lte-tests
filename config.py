@@ -25,11 +25,29 @@
 #
 ###############################################################################
 
+from scenarios.ituM2135.placer import IndoorHotspotBSPlacer, IndoorHotspotUEPlacer
+from scenarios.ituM2135.antenna import IndoorHotspotAntennaCreator
+from scenarios.ituM2135.channelmodelcreator import IndoorHotspotChannelModelCreator
+from scenarios.builders.creatorplacer import CreatorPlacerBuilder
+
+from lte.creators.fdd import BSCreator, UECreator
+import lte.support.helper
+
+class Config:
+    plmName = "ltefdd10"
+
+bsPlacer = IndoorHotspotBSPlacer()
+uePlacer = IndoorHotspotUEPlacer(numberOfNodes = 1, minDistance = 3)
+bsCreator = BSCreator(Config)
+bsAntennaCreator = IndoorHotspotAntennaCreator()
+ueCreator = UECreator(Config)
+channelModelCreator = IndoorHotspotChannelModelCreator()
+
+CreatorPlacerBuilder(bsCreator, bsPlacer, bsAntennaCreator, ueCreator, uePlacer, channelModelCreator)
+
 import openwns.simulator
 
-thisSimulator = openwns.simulator.OpenWNS()
+sim = openwns.simulator.getSimulator()
+sim.outputStrategy = openwns.simulator.OutputStrategy.DELETE
 
-openwns.simulator.setSimulator(thisSimulator)
-
-# This is minimalistic, now you need to give the simulator a simulation model
-# and setup your own scenario...
+#lte.support.helper.setupPhy(sim, Config.plmName, "InH")
