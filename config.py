@@ -34,7 +34,7 @@ from lte.creators.fdd import BSCreator, UECreator
 import lte.support.helper
 
 class Config:
-    plmName = "ltefdd10"
+    modes = ["ltefdd10"]
 
 bsPlacer = IndoorHotspotBSPlacer()
 uePlacer = IndoorHotspotUEPlacer(numberOfNodes = 1, minDistance = 3)
@@ -51,3 +51,12 @@ sim = openwns.simulator.getSimulator()
 sim.outputStrategy = openwns.simulator.OutputStrategy.DELETE
 
 #lte.support.helper.setupPhy(sim, Config.plmName, "InH")
+
+# Use this to modify your logger levels
+#import openwns.logger
+#a = openwns.logger.globalRegistry
+
+#a.setAttribute("LTE.UE3.L2.RLC", "level", 3)
+#a.dump()
+
+
