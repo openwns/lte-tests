@@ -29,13 +29,20 @@ from scenarios.ituM2135.placer import IndoorHotspotBSPlacer, IndoorHotspotUEPlac
 from scenarios.ituM2135.antenna import IndoorHotspotAntennaCreator
 from scenarios.ituM2135.channelmodelcreator import IndoorHotspotChannelModelCreator
 from scenarios.builders.creatorplacer import CreatorPlacerBuilder
+from scenarios.traffic import VoIP
 
+import constanze.node
 from lte.creators.fdd import BSCreator, UECreator
 import lte.support.helper
+import openwns.qos
+
+ueOffset = 0.05 
+duration = 1.0
 
 class Config:
     modes = ["ltefdd10"]
     useTCP = False
+    dlTraffic = VoIP(offset=0.0)
 
 bsPlacer = IndoorHotspotBSPlacer()
 uePlacer = IndoorHotspotUEPlacer(numberOfNodes = 1, minDistance = 3)
@@ -50,6 +57,17 @@ import openwns.simulator
 
 sim = openwns.simulator.getSimulator()
 sim.outputStrategy = openwns.simulator.OutputStrategy.DELETE
+
+rang = openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "RANG")[0]
+
+for ue in openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "UE"):
+    ue.addTraffic(constanze.node.UDPClientBinding(ue.nl.domainName,
+                                                  rang.nl.domainName,
+                                                  777,
+                                                  parentLogger=ue.logger,
+                                                  qosClass=openwns.qos.undefinedQosClass,
+                                                  nodeInCenterCell=True),
+                  constanze.traffic.VoIP(offset=ueOffset))
 
 from ip.VirtualARP import VirtualARPServer
 from ip.VirtualDHCP import VirtualDHCPServer
