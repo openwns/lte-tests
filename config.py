@@ -50,6 +50,22 @@ import openwns.simulator
 sim = openwns.simulator.getSimulator()
 sim.outputStrategy = openwns.simulator.OutputStrategy.DELETE
 
+from ip.VirtualARP import VirtualARPServer
+from ip.VirtualDHCP import VirtualDHCPServer
+from ip.VirtualDNS import VirtualDNSServer
+
+varp = VirtualARPServer("vARP", "LTERAN")
+openwns.simulator.getSimulator().simulationModel.nodes.append(varp)
+vdhcp = VirtualDHCPServer("vDHCP@",
+                          "LTERAN",
+                          "192.168.0.2", "192.168.254.253",
+                          "255.255.0.0")
+
+openwns.simulator.getSimulator().simulationModel.nodes.append(vdhcp)
+
+vdns = VirtualDNSServer("vDNS", "ip.DEFAULT.GLOBAL")
+openwns.simulator.getSimulator().simulationModel.nodes.append(vdns)
+
 #lte.support.helper.setupPhy(sim, Config.plmName, "InH")
 
 # Use this to modify your logger levels
