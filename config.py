@@ -35,6 +35,7 @@ import lte.support.helper
 
 class Config:
     modes = ["ltefdd10"]
+    useTCP = False
 
 bsPlacer = IndoorHotspotBSPlacer()
 uePlacer = IndoorHotspotUEPlacer(numberOfNodes = 1, minDistance = 3)
