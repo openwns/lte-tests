@@ -43,6 +43,7 @@ class Config:
     modes = ["ltefdd10"]
     useTCP = False
     dlTraffic = VoIP(offset=0.0)
+    maxSimTime = 1.0
 
 bsPlacer = IndoorHotspotBSPlacer()
 uePlacer = IndoorHotspotUEPlacer(numberOfNodes = 1, minDistance = 3)
@@ -57,6 +58,7 @@ import openwns.simulator
 
 sim = openwns.simulator.getSimulator()
 sim.outputStrategy = openwns.simulator.OutputStrategy.DELETE
+sim.maxSimTime = Config.maxSimTime
 
 rang = openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "RANG")[0]
 
