@@ -1,0 +1,29 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: Moments
+# ---------------------------------------------------------------------------
+#  Name: lte.total.window.aggregated.bitThroughput
+#  Description: Top aggregated bit throughput [Bit/s]
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 2752.0000000
+#  Maximum: 15664.0000000
+#  Trials: 2
+#  Mean: 9208.0000000
+# 
+#  Variance: 83359872.0000000
+#  Relative variance: 0.9831650
+#  Coefficient of variation: 0.9915468
+#  Standard deviation: 9130.1627587
+#  Relative standard deviation: 0.9915468
+# 
+#  Skewness: 0.0000000
+# 
+#  2nd moment: 126467200.0000000
+#  3rd moment: 1932087678976.0000000
+# 
+#  Sum of all values: 18416.0000000
+#  (Sum of all values)^2: 252934400.0000000
+#  (Sum of all values)^3: 3864175357952.0000000
