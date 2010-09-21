@@ -43,7 +43,8 @@ class Config:
     modes = ["ltefdd10"]
     useTCP = False
     dlTraffic = VoIP(offset=0.0)
-    maxSimTime = 1.0
+    settlingTime = 1.05
+    maxSimTime = 2.1
 
 bsPlacer = IndoorHotspotBSPlacer()
 uePlacer = IndoorHotspotUEPlacer(numberOfNodes = 1, minDistance = 3)
@@ -76,18 +77,29 @@ from ip.VirtualDHCP import VirtualDHCPServer
 from ip.VirtualDNS import VirtualDNSServer
 
 varp = VirtualARPServer("vARP", "LTERAN")
-openwns.simulator.getSimulator().simulationModel.nodes.append(varp)
+sim.simulationModel.nodes.append(varp)
 vdhcp = VirtualDHCPServer("vDHCP@",
                           "LTERAN",
                           "192.168.0.2", "192.168.254.253",
                           "255.255.0.0")
 
-openwns.simulator.getSimulator().simulationModel.nodes.append(vdhcp)
+sim.simulationModel.nodes.append(vdhcp)
 
 vdns = VirtualDNSServer("vDNS", "ip.DEFAULT.GLOBAL")
-openwns.simulator.getSimulator().simulationModel.nodes.append(vdns)
+sim.simulationModel.nodes.append(vdns)
 
 #lte.support.helper.setupPhy(sim, Config.plmName, "InH")
+
+import lte.evaluation.default
+eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
+ueNodes = sim.simulationModel.getNodesByProperty("Type", "UE")
+eNBIDs = [node.nodeID for node in eNBNodes]
+ueIDs = [node.nodeID for node in ueNodes]
+lte.evaluation.default.installEvaluation(sim,
+                                         eNBIDs + ueIDs,
+                                         eNBIDs,
+                                         ueIDs,
+                                         Config.settlingTime)
 
 # Use this to modify your logger levels
 #import openwns.logger
