@@ -11,22 +11,22 @@
 #  Minimum: 2064.0000000
 #  Maximum: 23400.0000000
 #  Trials: 4
-#  Mean: 18066.0000000
+#  Mean: 12732.0000000
 # 
-#  Variance: 113806224.0000000
-#  Relative variance: 0.3486920
-#  Coefficient of variation: 0.5905015
-#  Standard deviation: 10668.0000000
-#  Relative standard deviation: 0.5905015
+#  Variance: 151741632.0000000
+#  Relative variance: 0.9360768
+#  Coefficient of variation: 0.9675106
+#  Standard deviation: 12318.3453434
+#  Relative standard deviation: 0.9675106
 # 
-#  Skewness: -0.7500000
+#  Skewness: 0.0000000
 # 
-#  2nd moment: 411735024.0000000
-#  3rd moment: 9611876209536.0000000
+#  2nd moment: 275910048.0000000
+#  3rd moment: 6410848419072.0000000
 # 
-#  Sum of all values: 72264.0000000
-#  (Sum of all values)^2: 1646940096.0000000
-#  (Sum of all values)^3: 38447504838144.0000000
+#  Sum of all values: 50928.0000000
+#  (Sum of all values)^2: 1103640192.0000000
+#  (Sum of all values)^3: 25643393676288.0000000
 # -----------------------------------------------------------
 # PDF statistics 
 #  Left border of x-axis: 0
