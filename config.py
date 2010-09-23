@@ -36,6 +36,10 @@ from lte.creators.fdd import BSCreator, UECreator
 import lte.support.helper
 import openwns.qos
 
+import random
+
+random.seed(1234)
+
 ueOffset = 0.05 
 duration = 1.0
 
