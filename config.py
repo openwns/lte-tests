@@ -29,7 +29,9 @@ from scenarios.ituM2135.placer import IndoorHotspotBSPlacer, IndoorHotspotUEPlac
 from scenarios.ituM2135.antenna import IndoorHotspotAntennaCreator
 from scenarios.ituM2135.channelmodelcreator import IndoorHotspotChannelModelCreator
 from scenarios.builders.creatorplacer import CreatorPlacerBuilder
-from scenarios.traffic import VoIP
+import scenarios.traffic
+
+#from openwns.wrowser.simdb.SimConfig import params
 
 import constanze.node
 from lte.creators.fdd import BSCreator, UECreator
@@ -38,43 +40,64 @@ import openwns.qos
 
 import random
 
-random.seed(1234)
-
 ueOffset = 0.05 
 duration = 1.0
 
 class Config:
-    modes = ["ltefdd10"]
+    modes = ["ltefdd20"]
     useTCP = False
-    dlTraffic = VoIP(offset=0.0)
+    packetSize = 1500
+    startTrafficOffset = 0.05 # startTime
+
+    # Increase to at 15E6 for calibration
+    trafficRate = 1E5
+
+    # Increase to 10 for calibration
+    nodes = 1
+
+    # Use different seeds for calibration
+    seed = 1234
+
+    dlTraffic = scenarios.traffic.CBR(offset=0.0,
+                                      trafficRate=trafficRate,
+                                      packetSize = packetSize*8,
+                                      )
+
     settlingTime = 1.05
-    maxSimTime = 2.1
+    maxSimTime = 2.01
+
+random.seed(Config.seed)
 
 bsPlacer = IndoorHotspotBSPlacer()
-uePlacer = IndoorHotspotUEPlacer(numberOfNodes = 1, minDistance = 3)
+uePlacer = IndoorHotspotUEPlacer(numberOfNodes = Config.nodes, minDistance = 3)
 bsCreator = BSCreator(Config)
 bsAntennaCreator = IndoorHotspotAntennaCreator()
 ueCreator = UECreator(Config)
 channelModelCreator = IndoorHotspotChannelModelCreator()
 
-CreatorPlacerBuilder(bsCreator, bsPlacer, bsAntennaCreator, ueCreator, uePlacer, channelModelCreator)
+scenario = CreatorPlacerBuilder(bsCreator, bsPlacer, bsAntennaCreator, ueCreator, uePlacer, channelModelCreator)
 
 import openwns.simulator
 
 sim = openwns.simulator.getSimulator()
 sim.outputStrategy = openwns.simulator.OutputStrategy.DELETE
 sim.maxSimTime = Config.maxSimTime
+sim.rng.seed = Config.seed
 
 rang = openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "RANG")[0]
 
 for ue in openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "UE"):
-    ue.addTraffic(constanze.node.UDPClientBinding(ue.nl.domainName,
-                                                  rang.nl.domainName,
-                                                  777,
-                                                  parentLogger=ue.logger,
-                                                  qosClass=openwns.qos.undefinedQosClass,
-                                                  nodeInCenterCell=True),
-                  constanze.traffic.VoIP(offset=ueOffset))
+
+    binding = constanze.node.UDPClientBinding(ue.nl.domainName,
+                                              rang.nl.domainName,
+                                              777,
+                                              parentLogger=ue.logger,
+                                              qosClass=openwns.qos.undefinedQosClass)
+
+    ulTraffic = constanze.traffic.CBR(offset=Config.startTrafficOffset,
+                                      throughput=Config.trafficRate,
+                                      packetSize = Config.packetSize * 8)
+    ue.addTraffic(binding, ulTraffic)
 
 from ip.VirtualARP import VirtualARPServer
 from ip.VirtualDHCP import VirtualDHCPServer

@@ -8,25 +8,25 @@
 #  Evaluation terminated successfully!
 # ---------------------------------------------------------------------------
 #  Common Statistics 
-#  Minimum: 76.7889338
-#  Maximum: 80.6104160
-#  Trials: 57
-#  Mean: 77.1911950
+#  Minimum: 53.9270203
+#  Maximum: 79.5840277
+#  Trials: 320
+#  Mean: 66.7555240
 # 
-#  Variance: 1.3999813
-#  Relative variance: 0.0002350
-#  Coefficient of variation: 0.0153283
-#  Standard deviation: 1.1832080
-#  Relative standard deviation: 0.0153283
+#  Variance: 165.0864032
+#  Relative variance: 0.0370456
+#  Coefficient of variation: 0.1924724
+#  Standard deviation: 12.8485954
+#  Relative standard deviation: 0.1924724
 # 
-#  Skewness: 2.5050798
+#  Skewness: 0.0000000
 # 
-#  2nd moment: 5959.8560128
-#  3rd moment: 460264.8981729
+#  2nd moment: 4620.8704923
+#  3rd moment: 330440.6120547
 # 
-#  Sum of all values: 4399.8981176
-#  (Sum of all values)^2: 339711.7927284
-#  (Sum of all values)^3: 26235099.1958578
+#  Sum of all values: 21361.7676789
+#  (Sum of all values)^2: 1478678.5575298
+#  (Sum of all values)^3: 105740995.8575134
 # -----------------------------------------------------------
 # PDF statistics 
 #  Left border of x-axis: -20
@@ -36,7 +36,7 @@
 # PDF data 
 #  Underflows: 0
 #  Underflows in percent: 0
-#  Overflows: 57
+#  Overflows: 320
 #  Overflows in percent: 1
 # -----------------------------------------------------------
 # Percentiles
