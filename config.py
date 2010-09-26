@@ -38,6 +38,8 @@ from lte.creators.fdd import BSCreator, UECreator
 import lte.support.helper
 import openwns.qos
 
+import ip.BackboneHelpers
+
 import random
 
 ueOffset = 0.05 
@@ -58,6 +60,9 @@ class Config:
     # Use different seeds for calibration
     seed = 1234
 
+    # Change uplink power control parameter (alpha = 1 => full pathloss compensation)
+    alpha = 1.0
+
     dlTraffic = scenarios.traffic.CBR(offset=0.0,
                                       trafficRate=trafficRate,
                                       packetSize = packetSize*8,
@@ -68,14 +73,13 @@ class Config:
 
 random.seed(Config.seed)
 
-bsPlacer = IndoorHotspotBSPlacer()
-uePlacer = IndoorHotspotUEPlacer(numberOfNodes = Config.nodes, minDistance = 3)
 bsCreator = BSCreator(Config)
-bsAntennaCreator = IndoorHotspotAntennaCreator()
 ueCreator = UECreator(Config)
-channelModelCreator = IndoorHotspotChannelModelCreator()
 
-scenario = CreatorPlacerBuilder(bsCreator, bsPlacer, bsAntennaCreator, ueCreator, uePlacer, channelModelCreator)
+scenario = scenarios.builders.CreatorPlacerBuilderIndoorHotspot(
+    bsCreator, 
+    ueCreator, 
+    numberOfNodes = Config.nodes)
 
 import openwns.simulator
 
@@ -99,23 +103,11 @@ for ue in openwns.simulator.getSimulator().simulationModel.getNodesByProperty("T
                                       packetSize = Config.packetSize * 8)
     ue.addTraffic(binding, ulTraffic)
 
-from ip.VirtualARP import VirtualARPServer
-from ip.VirtualDHCP import VirtualDHCPServer
-from ip.VirtualDNS import VirtualDNSServer
 
-varp = VirtualARPServer("vARP", "LTERAN")
-sim.simulationModel.nodes.append(varp)
-vdhcp = VirtualDHCPServer("vDHCP@",
-                          "LTERAN",
-                          "192.168.0.2", "192.168.254.253",
-                          "255.255.0.0")
+# DHCP, ARP, DNS for IP
+ip.BackboneHelpers.createIPInfrastructure(sim, "LTERAN")
 
-sim.simulationModel.nodes.append(vdhcp)
-
-vdns = VirtualDNSServer("vDNS", "ip.DEFAULT.GLOBAL")
-sim.simulationModel.nodes.append(vdns)
-
-#lte.support.helper.setupPhy(sim, Config.plmName, "InH")
+lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha)
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
