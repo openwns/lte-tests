@@ -42,9 +42,6 @@ import ip.BackboneHelpers
 
 import random
 
-ueOffset = 0.05 
-duration = 1.0
-
 class Config:
     modes = ["ltefdd20"]
     useTCP = False
@@ -58,7 +55,7 @@ class Config:
     nodes = 1
 
     # Use different seeds for calibration
-    seed = 1234
+    seed = 7
 
     # Change uplink power control parameter (alpha = 1 => full pathloss compensation)
     alpha = 1.0
@@ -74,8 +71,7 @@ class Config:
     settlingTime = 1.05
     maxSimTime = 2.01
 
-random.seed(Config.seed)
-
+# begin example "lte.tutorial.experiment1.scenario"
 bsCreator = BSCreator(Config)
 ueCreator = UECreator(Config)
 
@@ -83,13 +79,18 @@ scenario = scenarios.builders.CreatorPlacerBuilderIndoorHotspot(
     bsCreator, 
     ueCreator, 
     numberOfNodes = Config.nodes)
+#end example
 
+# begin example "lte.tutorial.experiment1.config"
 import openwns.simulator
 
 sim = openwns.simulator.getSimulator()
 sim.outputStrategy = openwns.simulator.OutputStrategy.DELETE
 sim.maxSimTime = Config.maxSimTime
+
+random.seed(Config.seed)
 sim.rng.seed = Config.seed
+# end example
 
 rang = openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "RANG")[0]
 
@@ -106,11 +107,16 @@ for ue in openwns.simulator.getSimulator().simulationModel.getNodesByProperty("T
                                       packetSize = Config.packetSize * 8)
     ue.addTraffic(binding, ulTraffic)
 
-
 # DHCP, ARP, DNS for IP
 ip.BackboneHelpers.createIPInfrastructure(sim, "LTERAN")
 
+# begin example "lte.tutorial.experiment1.APC"
 lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = Config.pNull)
+#end example
+
+# begin example "lte.tutorial.experiment1.ft"
+lte.support.helper.setupFTFading(sim, "InH", Config.modes)
+# end example
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
