@@ -71,6 +71,10 @@ class Config:
     settlingTime = 1.05
     maxSimTime = 2.01
 
+# begin example "lte.tutorial.experiment1.prnd"
+random.seed(Config.seed)
+# end example
+
 # begin example "lte.tutorial.experiment1.scenario"
 bsCreator = BSCreator(Config)
 ueCreator = UECreator(Config)
@@ -88,7 +92,6 @@ sim = openwns.simulator.getSimulator()
 sim.outputStrategy = openwns.simulator.OutputStrategy.DELETE
 sim.maxSimTime = Config.maxSimTime
 
-random.seed(Config.seed)
 sim.rng.seed = Config.seed
 # end example
 
