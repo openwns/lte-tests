@@ -63,6 +63,9 @@ class Config:
     # Change uplink power control parameter (alpha = 1 => full pathloss compensation)
     alpha = 1.0
 
+    # Should be increased if alpha is below zero. 
+    pNull = "-106 dBm"
+
     dlTraffic = scenarios.traffic.CBR(offset=0.0,
                                       trafficRate=trafficRate,
                                       packetSize = packetSize*8,
@@ -107,7 +110,7 @@ for ue in openwns.simulator.getSimulator().simulationModel.getNodesByProperty("T
 # DHCP, ARP, DNS for IP
 ip.BackboneHelpers.createIPInfrastructure(sim, "LTERAN")
 
-lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha)
+lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = Config.pNull)
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
