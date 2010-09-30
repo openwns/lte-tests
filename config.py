@@ -51,7 +51,7 @@ class Config:
     # Increase to at 15E6 for calibration
     trafficRate = 1E5
 
-    # Increase to 10 for calibration
+    # Increase to 20 for calibration
     nodes = 1
 
     # Use different seeds for calibration
