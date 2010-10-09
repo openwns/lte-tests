@@ -130,7 +130,8 @@ lte.evaluation.default.installEvaluation(sim,
                                          eNBIDs + ueIDs,
                                          eNBIDs,
                                          ueIDs,
-                                         Config.settlingTime)
+                                         Config.settlingTime,
+                                         maxThroughputPerUE = 20.0e06)
 
 # Use this to modify your logger levels
 #import openwns.logger
