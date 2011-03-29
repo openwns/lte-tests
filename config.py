@@ -81,7 +81,7 @@ random.seed(Config.seed)
 bsCreator = BSCreator(Config)
 ueCreator = UECreator(Config)
 
-scenario = scenarios.builders.CreatorPlacerBuilderIndoorHotspot(
+scenario = scenarios.ituM2135.CreatorPlacerBuilderIndoorHotspot(
     bsCreator, 
     ueCreator, 
     numberOfNodes = Config.nodes)
