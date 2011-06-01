@@ -1,0 +1,29 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: Moments
+# ---------------------------------------------------------------------------
+#  Name: applications.packet.outgoing.iat
+#  Description: Packet iat [s]
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 0.0200000
+#  Maximum: 0.1600000
+#  Trials: 29
+#  Mean: 0.0565517
+# 
+#  Variance: 0.0037448
+#  Relative variance: 1.1709548
+#  Coefficient of variation: 1.0821066
+#  Standard deviation: 0.0611950
+#  Relative standard deviation: 1.0821066
+# 
+#  Skewness: 1.0240937
+# 
+#  2nd moment: 0.0068138
+#  3rd moment: 0.0010290
+# 
+#  Sum of all values: 1.6400000
+#  (Sum of all values)^2: 0.1976000
+#  (Sum of all values)^3: 0.0298400

@@ -1,0 +1,29 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: Moments
+# ---------------------------------------------------------------------------
+#  Name: applications.window.outgoing.bitThroughput
+#  Description: Average windowed outgoing bit throughput [Bit/s]
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 312.0000000
+#  Maximum: 520.0000000
+#  Trials: 2
+#  Mean: 416.0000000
+# 
+#  Variance: 21632.0000000
+#  Relative variance: 0.1250000
+#  Coefficient of variation: 0.3535534
+#  Standard deviation: 147.0782105
+#  Relative standard deviation: 0.3535534
+# 
+#  Skewness: 0.0000000
+# 
+#  2nd moment: 183872.0000000
+#  3rd moment: 85489664.0000000
+# 
+#  Sum of all values: 832.0000000
+#  (Sum of all values)^2: 367744.0000000
+#  (Sum of all values)^3: 170979328.0000000

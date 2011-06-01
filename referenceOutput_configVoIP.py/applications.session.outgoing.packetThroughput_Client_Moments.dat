@@ -1,0 +1,29 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: Moments
+# ---------------------------------------------------------------------------
+#  Name: applications.session.outgoing.packetThroughput
+#  Description: Average outgoing packet throughput per session [Packets/s]
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 28.1250000
+#  Maximum: 30.2083333
+#  Trials: 2
+#  Mean: 29.1666667
+# 
+#  Variance: 2.1701389
+#  Relative variance: 0.0025510
+#  Coefficient of variation: 0.0505076
+#  Standard deviation: 1.4731391
+#  Relative standard deviation: 0.0505076
+# 
+#  Skewness: 0.0000000
+# 
+#  2nd moment: 851.7795139
+#  3rd moment: 24906.8648727
+# 
+#  Sum of all values: 58.3333333
+#  (Sum of all values)^2: 1703.5590278
+#  (Sum of all values)^3: 49813.7297454

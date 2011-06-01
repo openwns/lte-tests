@@ -1,0 +1,29 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: Moments
+# ---------------------------------------------------------------------------
+#  Name: applications.session.outgoing.bitThroughput
+#  Description: Average outgoing bit throughput per session [Bit/s]
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 650.0000000
+#  Maximum: 8116.6666667
+#  Trials: 2
+#  Mean: 4383.3333333
+# 
+#  Variance: 27875555.5555556
+#  Relative variance: 1.4508233
+#  Coefficient of variation: 1.2045013
+#  Standard deviation: 5279.7306329
+#  Relative standard deviation: 1.2045013
+# 
+#  Skewness: 0.0000000
+# 
+#  2nd moment: 33151388.8888889
+#  3rd moment: 267501439814.8150330
+# 
+#  Sum of all values: 8766.6666667
+#  (Sum of all values)^2: 66302777.7777778
+#  (Sum of all values)^3: 535002879629.6300659

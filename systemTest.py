@@ -40,7 +40,13 @@ import pywns.WNSUnit
 # create a system test
 testSuite1 = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
                                     configFile = 'config.py',
-                                    shortDescription = '!!!Not given. Set this in systemTest.py!!!',
+                                    shortDescription = 'Basic InH config',
+                                    runSimulations = True,
+                                    disabled = False,
+                                    disabledReason = "this will be displayed if you disable the suite")
+testSuite2 = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
+                                    configFile = 'configVoIP.py',
+                                    shortDescription = 'Basic InH config for VoIP',
                                     runSimulations = True,
                                     disabled = False,
                                     disabledReason = "this will be displayed if you disable the suite")
@@ -49,6 +55,7 @@ testSuite1 = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
 # create a system test
 testSuite = pywns.WNSUnit.TestSuite()
 testSuite.addTest(testSuite1)
+testSuite.addTest(testSuite2)
 # If you want multiple test suites, just create another one and add it here
 # e.g. testSuite.addTest(testSuite2)
 

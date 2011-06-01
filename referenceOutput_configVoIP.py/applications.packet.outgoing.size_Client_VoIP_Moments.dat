@@ -1,0 +1,29 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: Moments
+# ---------------------------------------------------------------------------
+#  Name: applications.packet.outgoing.size
+#  Description: Outgoing packet size [Bit]
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 104.0000000
+#  Maximum: 340.0000000
+#  Trials: 56
+#  Mean: 314.7142857
+# 
+#  Variance: 5424.9350649
+#  Relative variance: 0.0547724
+#  Coefficient of variation: 0.2340350
+#  Standard deviation: 73.6541585
+#  Relative standard deviation: 0.2340350
+# 
+#  Skewness: -2.4726010
+# 
+#  2nd moment: 104373.1428571
+#  3rd moment: 35213378.2857143
+# 
+#  Sum of all values: 17624.0000000
+#  (Sum of all values)^2: 5844896.0000000
+#  (Sum of all values)^3: 1971949184.0000000

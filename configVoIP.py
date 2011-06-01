@@ -25,9 +25,10 @@
 #
 ###############################################################################
 
+from scenarios.ituM2135.placer import IndoorHotspotBSPlacer, IndoorHotspotUEPlacer
 from scenarios.ituM2135.antenna import IndoorHotspotAntennaCreator
+from scenarios.ituM2135.channelmodelcreator import IndoorHotspotChannelModelCreator
 from scenarios.builders.creatorplacer import CreatorPlacerBuilder
-import scenarios.channelmodel.channelmodelcreator
 import scenarios.traffic
 
 #from openwns.wrowser.simdb.SimConfig import params
@@ -44,45 +45,44 @@ import random
 class Config:
     modes = ["ltefdd20"]
     useTCP = False
-    packetSize = 1500
+    useApp = True
     startTrafficOffset = 0.05 # startTime
 
-    cellRadius = 50
-    distance = 25
-
     # Increase to at 15E6 for calibration
-    dlTrafficRate = 0.0
-    ulTrafficRate = 15E6
+    trafficRate = 1E5
 
     # Increase to 20 for calibration
-    nodes = 10
+    nodes = 2
 
     # Use different seeds for calibration
     seed = 7
 
-    if dlTrafficRate > 0.0:
-        dlTraffic = scenarios.traffic.CBR(offset=0.0,
-                                      trafficRate=trafficRate,
-                                      packetSize = packetSize*8,
-                                      )
-    else:
-        dlTraffic = None
+    # Change uplink power control parameter (alpha = 1 => full pathloss compensation)
+    # Specifications allow values [0.0, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    alpha = 1.0
+
+    # Should be increased if alpha is below zero. 
+    # Specifications allow values from -126dBm to +23dBm
+    pNull = "-106 dBm"
 
     settlingTime = 1.05
     maxSimTime = 2.01
 
+# begin example "lte.tutorial.experiment1.prnd"
 random.seed(Config.seed)
+# end example
 
+# begin example "lte.tutorial.experiment1.scenario"
 bsCreator = BSCreator(Config)
 ueCreator = UECreator(Config)
-bsPlacer = scenarios.placer.LinearPlacer(numberOfNodes = 2,
-                                         positionsList = [Config.cellRadius, Config.cellRadius + Config.distance])
-uePlacer = scenarios.placer.circular.CircularAreaPlacer(Config.nodes, Config.cellRadius, 3.0)
-bsAntenna = scenarios.antenna.IsotropicAntennaCreator([0.0, 0.0, 5.0])
 
-channelmodelcreator = scenarios.channelmodel.InHNLoSChannelModelCreator()
-scenario = scenarios.builders.CreatorPlacerBuilder(bsCreator, bsPlacer, bsAntenna, ueCreator, uePlacer, channelmodelcreator)
+scenario = scenarios.ituM2135.CreatorPlacerBuilderIndoorHotspot(
+    bsCreator, 
+    ueCreator, 
+    numberOfNodes = Config.nodes)
+#end example
 
+# begin example "lte.tutorial.experiment1.config"
 import openwns.simulator
 
 sim = openwns.simulator.getSimulator()
@@ -92,36 +92,24 @@ sim.maxSimTime = Config.maxSimTime
 sim.rng.seed = Config.seed
 # end example
 
-rang = openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "RANG")[0]
-
-if Config.ulTrafficRate > 0.0:
-    for ue in openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "UE"):
-
-        binding = constanze.node.UDPClientBinding(ue.nl.domainName,
-                                                  rang.nl.domainName,
-                                                  777,
-                                                  parentLogger=ue.logger,
-                                                  qosClass=openwns.qos.undefinedQosClass)
-
-        ulTraffic = constanze.traffic.CBR(offset=Config.startTrafficOffset,
-                                          throughput=Config.ulTrafficRate,
-                                          packetSize = Config.packetSize * 8)
-        ue.addTraffic(binding, ulTraffic)
 
 # DHCP, ARP, DNS for IP
 ip.BackboneHelpers.createIPInfrastructure(sim, "LTERAN")
 
-lte.support.helper.setupULScheduler(sim, "Fixed", Config.modes)
+# begin example "lte.tutorial.experiment1.APC"
+lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = Config.pNull)
+#end example
+
+# begin example "lte.tutorial.experiment1.ft"
+lte.support.helper.setupFTFading(sim, "InH", Config.modes)
+# end example
+
+lte.support.helper.createDLVoIPTraffic(sim, settlingTime = Config.settlingTime)
+lte.support.helper.createULVoIPTraffic(sim, settlingTime = Config.settlingTime)
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
 ueNodes = sim.simulationModel.getNodesByProperty("Type", "UE")
-
-for bs in eNBNodes:
-    for ut in sim.simulationModel.getNodesByProperty("BS", bs):
-        ut.dll.associateTo(bs.dll.address)
-    
-
 eNBIDs = [node.nodeID for node in eNBNodes]
 ueIDs = [node.nodeID for node in ueNodes]
 lte.evaluation.default.installEvaluation(sim,
@@ -131,11 +119,7 @@ lte.evaluation.default.installEvaluation(sim,
                                          Config.settlingTime,
                                          maxThroughputPerUE = 20.0e06)
 
-# Use this to modify your logger levels
-#import openwns.logger
-#a = openwns.logger.globalRegistry
-
-#a.setAttribute("LTE.UE3.L2.RLC", "level", 3)
-#a.dump()
+import applications.evaluation.default
+applications.evaluation.default.installEvaluation(sim, eNBIDs, ueIDs, Config.settlingTime)
 
 

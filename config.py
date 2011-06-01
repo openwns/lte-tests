@@ -45,6 +45,7 @@ import random
 class Config:
     modes = ["ltefdd20"]
     useTCP = False
+    useApp = False
     packetSize = 1500
     startTrafficOffset = 0.05 # startTime
 

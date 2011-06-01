@@ -1,0 +1,29 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: Moments
+# ---------------------------------------------------------------------------
+#  Name: applications.packet.incoming.delay
+#  Description: End to end packet delay [s]
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 0.0060000
+#  Maximum: 0.0300000
+#  Trials: 56
+#  Mean: 0.0085000
+# 
+#  Variance: 0.0000230
+#  Relative variance: 0.3185908
+#  Coefficient of variation: 0.5644384
+#  Standard deviation: 0.0047977
+#  Relative standard deviation: 0.5644384
+# 
+#  Skewness: 2.2246452
+# 
+#  2nd moment: 0.0000949
+#  3rd moment: 0.0000014
+# 
+#  Sum of all values: 0.4760000
+#  (Sum of all values)^2: 0.0053120
+#  (Sum of all values)^3: 0.0000804
