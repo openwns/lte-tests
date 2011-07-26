@@ -43,7 +43,7 @@ import ip.BackboneHelpers
 import random
 
 class Config:
-    modes = ["ltefdd20"]
+    modes = ["ltefdd5"]
     useTCP = False
     useApp = True
     startTrafficOffset = 0.05 # startTime
@@ -101,11 +101,15 @@ lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = 
 #end example
 
 # begin example "lte.tutorial.experiment1.ft"
-lte.support.helper.setupFTFading(sim, "InH", Config.modes)
+#lte.support.helper.setupFTFading(sim, "InH", Config.modes)
 # end example
 
 lte.support.helper.createDLVoIPTraffic(sim, settlingTime = Config.settlingTime)
 lte.support.helper.createULVoIPTraffic(sim, settlingTime = Config.settlingTime)
+
+lte.support.helper.setupULScheduler(sim, "PersistentVoIP", Config.modes)
+
+lte.support.helper.setHARQRetransmissionLimit(sim, Config.modes, 0)
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
