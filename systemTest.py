@@ -37,6 +37,18 @@ sys.path.append(os.path.join('..', '..', '..', 'sandbox', 'default', 'lib', 'pyt
 # ... because the module WNS unit test framework is located there.
 import pywns.WNSUnit
 
+# See if imtaphy module is available and adjust reference output
+sys.path.append(os.path.join('..', '..', '..', 'sandbox', 'dbg', 'lib', 'PyConfig'))
+if not os.path.exists("referenceOutput_config.py"):
+    try:
+        import imtaphy
+        os.symlink("referenceOutputIMTA_config.py", "referenceOutput_config.py")
+        print "Using IMTA M2135 FastFading"
+    except ImportError:
+        print "Using Frequency Neighbor Correlated FastFading"
+        os.symlink("referenceOutputFTFading_config.py", "referenceOutput_config.py")
+
+
 # create a system test
 testSuite1 = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
                                     configFile = 'config.py',

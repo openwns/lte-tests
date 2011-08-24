@@ -4,3 +4,4 @@ stdout.log
 *.junk
 *.csv
 .BACKUP
+referenceOutput_config.py

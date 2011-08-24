@@ -30,6 +30,8 @@ from scenarios.ituM2135.antenna import IndoorHotspotAntennaCreator
 from scenarios.ituM2135.channelmodelcreator import IndoorHotspotChannelModelCreator
 from scenarios.builders.creatorplacer import CreatorPlacerBuilder
 import scenarios.traffic
+import scenarios.channelmodel
+import rise.scenario.Propagation
 
 #from openwns.wrowser.simdb.SimConfig import params
 
@@ -85,7 +87,8 @@ ueCreator = UECreator(Config)
 scenario = scenarios.ituM2135.CreatorPlacerBuilderIndoorHotspot(
     bsCreator, 
     ueCreator, 
-    numberOfNodes = Config.nodes)
+    numberOfNodes = Config.nodes,
+    transceiverTypes = scenarios.channelmodel.APandUT)
 #end example
 
 # begin example "lte.tutorial.experiment1.config"
@@ -120,10 +123,6 @@ ip.BackboneHelpers.createIPInfrastructure(sim, "LTERAN")
 lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = Config.pNull)
 #end example
 
-# begin example "lte.tutorial.experiment1.ft"
-lte.support.helper.setupFTFading(sim, "InH", Config.modes)
-# end example
-
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
 ueNodes = sim.simulationModel.getNodesByProperty("Type", "UE")
@@ -135,6 +134,18 @@ lte.evaluation.default.installEvaluation(sim,
                                          ueIDs,
                                          Config.settlingTime,
                                          maxThroughputPerUE = 20.0e06)
+
+try:
+# begin example "lte.tutorial.experiment1.ft"
+    import imtaphy
+    from imtaphy.SCM import SISORiseWrapper
+    nsc = lte.support.helper.getMaxNumberOfSubchannels(Config.modes)
+    prop = rise.scenario.Propagation.PropagationSingleton.getInstance()
+    prop.setPair("UT", "AP").fastFading = SISORiseWrapper(3.0, 3.4E9, nsc, "UL")
+    prop.setPair("AP", "UT").fastFading = SISORiseWrapper(3.0, 3.4E9, nsc, "DL")
+#end example
+except ImportError:
+    print "IMTAPhy modul not available, cannot enable IMT-A ITU M2135 FastFading"
 
 # Use this to modify your logger levels
 #import openwns.logger
