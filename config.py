@@ -138,7 +138,10 @@ lte.evaluation.default.installEvaluation(sim,
 try:
 # begin example "lte.tutorial.experiment1.ft"
     import imtaphy
-    from imtaphy.SCM import SISORiseWrapper
+
+    # Use "NoRiseWrapper to compare flat to fast fading simulations since
+    # it assures identical simulator runs (drawing same random numbers)
+    from imtaphy.SCM import SISORiseWrapper, SIMORiseWrapper, NoRiseWrapper
     nsc = lte.support.helper.getMaxNumberOfSubchannels(Config.modes)
     prop = rise.scenario.Propagation.PropagationSingleton.getInstance()
     prop.setPair("UT", "AP").fastFading = SISORiseWrapper(3.0, 3.4E9, nsc, "UL")
