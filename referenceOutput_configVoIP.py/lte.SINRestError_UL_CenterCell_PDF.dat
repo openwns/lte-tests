@@ -2,15 +2,15 @@
 # ---------------------------------------------------------------------------
 # Evaluation: PDF
 # ---------------------------------------------------------------------------
-#  Name: lte.IestError
-#  Description: Interference Estimation Error [dBm]
+#  Name: lte.SINRestError
+#  Description: SINR Estimation Error [dB]
 # ---------------------------------------------------------------------------
 #  Evaluation terminated successfully!
 # ---------------------------------------------------------------------------
 #  Common Statistics 
 #  Minimum: 0.0000000
 #  Maximum: 0.0000000
-#  Trials: 320
+#  Trials: 166
 #  Mean: 0.0000000
 # 
 #  Variance: 0.0000000
