@@ -123,6 +123,10 @@ ip.BackboneHelpers.createIPInfrastructure(sim, "LTERAN")
 lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = Config.pNull)
 #end example
 
+# begin example "lte.tutorial.experiment1.ft"
+lte.support.helper.setupFastFading("InH", Config.modes, rxAntennas = 1)
+#end example
+
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
 ueNodes = sim.simulationModel.getNodesByProperty("Type", "UE")
@@ -134,21 +138,6 @@ lte.evaluation.default.installEvaluation(sim,
                                          ueIDs,
                                          Config.settlingTime,
                                          maxThroughputPerUE = 20.0e06)
-
-try:
-# begin example "lte.tutorial.experiment1.ft"
-    import imtaphy
-
-    # Use "NoRiseWrapper to compare flat to fast fading simulations since
-    # it assures identical simulator runs (drawing same random numbers)
-    from imtaphy.SCM import SISORiseWrapper, SIMORiseWrapper, NoRiseWrapper
-    nsc = lte.support.helper.getMaxNumberOfSubchannels(Config.modes)
-    prop = rise.scenario.Propagation.PropagationSingleton.getInstance()
-    prop.setPair("UT", "AP").fastFading = SISORiseWrapper(3.0, 3.4E9, nsc, "UL")
-    prop.setPair("AP", "UT").fastFading = SISORiseWrapper(3.0, 3.4E9, nsc, "DL")
-#end example
-except ImportError:
-    print "IMTAPhy modul not available, cannot enable IMT-A ITU M2135 FastFading"
 
 # Use this to modify your logger levels
 #import openwns.logger
