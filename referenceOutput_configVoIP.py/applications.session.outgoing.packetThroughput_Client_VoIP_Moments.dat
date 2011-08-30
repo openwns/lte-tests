@@ -8,22 +8,22 @@
 #  Evaluation terminated successfully!
 # ---------------------------------------------------------------------------
 #  Common Statistics 
-#  Minimum: 41.6666667
-#  Maximum: 46.8750000
+#  Minimum: 22.9166667
+#  Maximum: 26.0416667
 #  Trials: 2
-#  Mean: 44.2708333
+#  Mean: 24.4791667
 # 
-#  Variance: 13.5633681
-#  Relative variance: 0.0069204
-#  Coefficient of variation: 0.0831890
-#  Standard deviation: 3.6828478
-#  Relative standard deviation: 0.0831890
+#  Variance: 4.8828125
+#  Relative variance: 0.0081485
+#  Coefficient of variation: 0.0902690
+#  Standard deviation: 2.2097087
+#  Relative standard deviation: 0.0902690
 # 
-#  Skewness: 0.0000000
+#  Skewness: -0.0000000
 # 
-#  2nd moment: 1966.6883681
-#  3rd moment: 87667.3945674
+#  2nd moment: 601.6710069
+#  3rd moment: 14847.9320385
 # 
-#  Sum of all values: 88.5416667
-#  (Sum of all values)^2: 3933.3767361
-#  (Sum of all values)^3: 175334.7891348
+#  Sum of all values: 48.9583333
+#  (Sum of all values)^2: 1203.3420139
+#  (Sum of all values)^3: 29695.8640770

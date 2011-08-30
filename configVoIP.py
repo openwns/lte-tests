@@ -46,16 +46,12 @@ class Config:
     modes = ["ltefdd5"]
     useTCP = False
     useApp = True
-    startTrafficOffset = 0.05 # startTime
-
-    # Increase to at 15E6 for calibration
-    trafficRate = 1E5
 
     # Increase to 20 for calibration
     nodes = 2
 
     # Use different seeds for calibration
-    seed = 7
+    seed = 1
 
     # Change uplink power control parameter (alpha = 1 => full pathloss compensation)
     # Specifications allow values [0.0, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
