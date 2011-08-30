@@ -1,44 +1,40 @@
         WNS
        =====
                  Status: Simulation is still running
-                     Start: Fri Aug 26 16:07:59 2011
-                       Now: Fri Aug 26 16:08:07 2011
-                  Duration:             0:00:08
+                     Start: Tue Aug 30 17:48:41 2011
+                       Now: Tue Aug 30 17:48:48 2011
+                  Duration:             0:00:07
 
               Simulation time: 0
          Max. simulation time: 2.01
 
 
-Debug output
-----------------------------------------------------------
-Max number of PDUs:     0
-Current number of PDUs: 0
 
 
 The following output is read from /proc/self/status
 ----------------------------------------------------------
-Name:	openwns
+Name:	fast-openwns
 State:	R (running)
-Tgid:	3760
-Pid:	3760
-PPid:	3759
+Tgid:	19749
+Pid:	19749
+PPid:	11491
 TracerPid:	0
 Uid:	1000	1000	1000	1000
 Gid:	1000	1000	1000	1000
-FDSize:	32
+FDSize:	256
 Groups:	4 20 24 25 29 30 44 46 107 109 115 121 124 1000 
-VmPeak:	  110548 kB
-VmSize:	  110548 kB
+VmPeak:	   90004 kB
+VmSize:	   90004 kB
 VmLck:	       0 kB
-VmHWM:	   58512 kB
-VmRSS:	   58512 kB
-VmData:	   36608 kB
-VmStk:	     232 kB
+VmHWM:	   42552 kB
+VmRSS:	   42552 kB
+VmData:	   36428 kB
+VmStk:	     236 kB
 VmExe:	      16 kB
-VmLib:	   70400 kB
-VmPTE:	     136 kB
+VmLib:	   50328 kB
+VmPTE:	     116 kB
 Threads:	3
-SigQ:	1/16382
+SigQ:	0/16382
 SigPnd:	0000000000000000
 ShdPnd:	0000000000000000
 SigBlk:	0000000000000000
@@ -52,5 +48,5 @@ Cpus_allowed:	3
 Cpus_allowed_list:	0-1
 Mems_allowed:	1
 Mems_allowed_list:	0
-voluntary_ctxt_switches:	4
-nonvoluntary_ctxt_switches:	1130
+voluntary_ctxt_switches:	5
+nonvoluntary_ctxt_switches:	836
