@@ -47,22 +47,23 @@ class Config:
     useTCP = False
     useApp = True
 
-    # Increase to 20 for calibration
+    # Increase for real results
     nodes = 2
 
-    # Use different seeds for calibration
+    # Use different seeds for real results
     seed = 1
 
     # Change uplink power control parameter (alpha = 1 => full pathloss compensation)
     # Specifications allow values [0.0, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-    alpha = 1.0
+    alpha = 0.0
 
     # Should be increased if alpha is below zero. 
     # Specifications allow values from -126dBm to +23dBm
-    pNull = "-106 dBm"
+    pNull = "4 dBm"
 
+    # Set to 21.05 for real results
     settlingTime = 1.05
-    maxSimTime = 2.01
+    maxSimTime = 2.05
 
 # begin example "lte.tutorial.experiment1.prnd"
 random.seed(Config.seed)
@@ -105,8 +106,6 @@ lte.support.helper.createULVoIPTraffic(sim, settlingTime = Config.settlingTime)
 
 lte.support.helper.setupULScheduler(sim, "PersistentVoIP", Config.modes)
 
-lte.support.helper.setHARQRetransmissionLimit(sim, Config.modes, 0)
-
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
 ueNodes = sim.simulationModel.getNodesByProperty("Type", "UE")
@@ -122,4 +121,14 @@ lte.evaluation.default.installEvaluation(sim,
 import applications.evaluation.default
 applications.evaluation.default.installEvaluation(sim, eNBIDs, ueIDs, Config.settlingTime)
 
+from openwns.evaluation import *
+sourceName = 'scheduler.persistentvoip.FrameOccupationFairness'
+node = openwns.evaluation.createSourceNode(sim, sourceName)
+node.getLeafs().appendChildren(SettlingTimeGuard(settlingTime = Config.settlingTime))
+node.getLeafs().appendChildren(Accept(by='nodeID', ifIn = eNBIDs + ueIDs, suffix='CenterCell'))
+node.getLeafs().appendChildren(PDF(name = sourceName,
+                                 description = 'Frame Occupation Fairness',
+                                 minXValue = 0,
+                                 maxXValue = 1,
+                                 resolution = 100))
 
