@@ -65,7 +65,7 @@ testSuite2 = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
 
 # create a system test
 testSuite = pywns.WNSUnit.TestSuite()
-testSuite.addTest(testSuite1)
+#testSuite.addTest(testSuite1)
 testSuite.addTest(testSuite2)
 # If you want multiple test suites, just create another one and add it here
 # e.g. testSuite.addTest(testSuite2)

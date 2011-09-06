@@ -119,7 +119,8 @@ lte.evaluation.default.installEvaluation(sim,
                                          maxThroughputPerUE = 20.0e06)
 
 import applications.evaluation.default
-applications.evaluation.default.installEvaluation(sim, eNBIDs, ueIDs, Config.settlingTime)
+applications.evaluation.default.installEvaluation(sim, eNBIDs, ueIDs,
+                                                ['VoIP'], Config.settlingTime)
 
 from openwns.evaluation import *
 sourceName = 'scheduler.persistentvoip.FrameOccupationFairness'
