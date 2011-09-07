@@ -102,9 +102,11 @@ lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = 
 # end example
 
 lte.support.helper.createDLVoIPTraffic(sim, settlingTime = Config.settlingTime)
-lte.support.helper.createULVoIPTraffic(sim, settlingTime = Config.settlingTime)
+lte.support.helper.createULVoIPTraffic(sim, settlingTime = Config.settlingTime, 
+    maxStartDelay = float(Config.settlingTime) / 2.0)
 
 lte.support.helper.setupULScheduler(sim, "PersistentVoIP", Config.modes)
+lte.support.helper.disablePhyUnicastULTransmission(sim, Config.modes)
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
