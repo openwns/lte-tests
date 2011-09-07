@@ -10,7 +10,7 @@
 #  Common Statistics 
 #  Minimum: 99.9999997
 #  Maximum: 99.9999998
-#  Trials: 48
+#  Trials: 68
 #  Mean: 99.9999998
 # 
 #  Variance: 0.0000000
@@ -21,12 +21,12 @@
 # 
 #  Skewness: 0.0000000
 # 
-#  2nd moment: 9999.9999553
-#  3rd moment: 999999.9932959
+#  2nd moment: 9999.9999525
+#  3rd moment: 999999.9928700
 # 
-#  Sum of all values: 4799.9999893
-#  (Sum of all values)^2: 479999.9978547
-#  (Sum of all values)^3: 47999999.6782056
+#  Sum of all values: 6799.9999838
+#  (Sum of all values)^2: 679999.9967677
+#  (Sum of all values)^3: 67999999.5151610
 # -----------------------------------------------------------
 # PDF statistics 
 #  Left border of x-axis: -30
@@ -36,7 +36,7 @@
 # PDF data 
 #  Underflows: 0
 #  Underflows in percent: 0
-#  Overflows: 48
+#  Overflows: 68
 #  Overflows in percent: 1
 # -----------------------------------------------------------
 # Percentiles
