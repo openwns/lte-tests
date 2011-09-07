@@ -60,7 +60,8 @@ testSuite2 = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
                                     shortDescription = 'Basic InH config for VoIP',
                                     runSimulations = True,
                                     disabled = False,
-                                    disabledReason = "this will be displayed if you disable the suite")
+                                    disabledReason = "this will be displayed if you disable the suite",
+                                    maximumRelativeError = 1E-5)
 
 
 # create a system test
