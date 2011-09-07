@@ -101,9 +101,18 @@ lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = 
 #lte.support.helper.setupFTFading(sim, "InH", Config.modes)
 # end example
 
-lte.support.helper.createDLVoIPTraffic(sim, settlingTime = Config.settlingTime)
+
+# Client will try to establish the session between [0..SettlingTime / 3]
 lte.support.helper.createULVoIPTraffic(sim, settlingTime = Config.settlingTime, 
-    maxStartDelay = float(Config.settlingTime) / 2.0)
+    maxStartDelay = float(Config.settlingTime) / 3.0)
+# Server will try to establish the session between [SettlingTime / 3.. SettlingTime * 2 / 3].
+# Client will not start before first PDU from server is received
+lte.support.helper.createDLVoIPTraffic(sim, settlingTime = Config.settlingTime,
+    trafficStartDelay = float(Config.settlingTime) / 3.0)
+# This assures all connections can be established before actual VoIP traffic starts
+# Check the application.connectionEstablished probe. It must have mean 1.0 if everything
+# is OK: L2 connection established; Server session created after first PDU from client 
+# was received; client received at least one PDU from server.
 
 lte.support.helper.setupULScheduler(sim, "PersistentVoIP", Config.modes)
 lte.support.helper.disablePhyUnicastULTransmission(sim, Config.modes)
