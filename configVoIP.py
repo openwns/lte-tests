@@ -61,7 +61,7 @@ class Config:
     # Specifications allow values from -126dBm to +23dBm
     pNull = "4 dBm"
 
-    # Set to 21.05 for real results
+    # Set to 21.15 for real results
     settlingTime = 1.05
     maxSimTime = 2.05
 
@@ -104,11 +104,11 @@ lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = 
 
 # Client will try to establish the session between [0..SettlingTime / 3]
 lte.support.helper.createULVoIPTraffic(sim, settlingTime = Config.settlingTime, 
-    maxStartDelay = float(Config.settlingTime) / 3.0)
+    maxStartDelay = float(Config.settlingTime) / 3.0, probeEndTime = Config.maxSimTime - 0.1)
 # Server will try to establish the session between [SettlingTime / 3.. SettlingTime * 2 / 3].
 # Client will not start before first PDU from server is received
 lte.support.helper.createDLVoIPTraffic(sim, settlingTime = Config.settlingTime,
-    trafficStartDelay = float(Config.settlingTime) / 3.0)
+    trafficStartDelay = float(Config.settlingTime) / 3.0, probeEndTime = Config.maxSimTime - 0.1)
 # This assures all connections can be established before actual VoIP traffic starts
 # Check the application.connectionEstablished probe. It must have mean 1.0 if everything
 # is OK: L2 connection established; Server session created after first PDU from client 
@@ -116,6 +116,8 @@ lte.support.helper.createDLVoIPTraffic(sim, settlingTime = Config.settlingTime,
 
 lte.support.helper.setupULScheduler(sim, "PersistentVoIP", Config.modes)
 lte.support.helper.disablePhyUnicastULTransmission(sim, Config.modes)
+
+#lte.support.helper.setHARQRetransmissionLimit(sim, Config.modes, 20)
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
@@ -144,3 +146,7 @@ node.getLeafs().appendChildren(PDF(name = sourceName,
                                  maxXValue = 1,
                                  resolution = 100))
 
+import openwns.evaluation.default
+
+openwns.evaluation.default.installEvaluation(openwns.simulator.getSimulator())
+openwns.simulator.getSimulator().statusWriteInterval = 10 # in seconds realTime
