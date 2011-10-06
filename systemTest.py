@@ -62,12 +62,20 @@ testSuite2 = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
                                     disabled = False,
                                     disabledReason = "this will be displayed if you disable the suite",
                                     maximumRelativeError = 1E-5)
+testSuite3 = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
+                                    configFile = 'configMeta.py',
+                                    shortDescription = 'Basic InH config including metascheduling',
+                                    runSimulations = True,
+                                    disabled = False,
+                                    disabledReason = "this will be displayed if you disable the suite",
+                                    maximumRelativeError = 1E-5)
 
 
 # create a system test
 testSuite = pywns.WNSUnit.TestSuite()
 testSuite.addTest(testSuite1)
 testSuite.addTest(testSuite2)
+testSuite.addTest(testSuite3)
 # If you want multiple test suites, just create another one and add it here
 # e.g. testSuite.addTest(testSuite2)
 
