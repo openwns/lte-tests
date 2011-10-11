@@ -121,9 +121,10 @@ ip.BackboneHelpers.createIPInfrastructure(sim, "LTERAN")
 
 # Setup 
 lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = Config.pNull)
-lte.support.helper.setupFastFading("InH", Config.modes, rxAntennas = 1)
-#lte.support.helper.setupSchedulerDetail(sim, "Meta", "UL", Config.modes)
-#lte.support.helper.setupSchedulerDetail(sim, "Meta", "DL", Config.modes)
+#lte.support.helper.setupFastFading("InH", Config.modes, rxAntennas = 1)
+
+#lte.support.helper.setupSchedulerDetail(sim, "Fixed", "UL", Config.modes)
+#lte.support.helper.setupSchedulerDetail(sim, "Fixed", "DL", Config.modes)
 
 # TODO: separation of up- and downlink metascheduler
 lte.support.helper.setupMetaScheduler(sim, "UL", Config.modes, "NoMetaScheduler")
