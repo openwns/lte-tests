@@ -32,6 +32,7 @@ from scenarios.builders.creatorplacer import CreatorPlacerBuilder
 import scenarios.traffic
 import scenarios.channelmodel
 import rise.scenario.Propagation
+import math
 
 #from openwns.wrowser.simdb.SimConfig import params
 
@@ -56,6 +57,14 @@ class Config:
 
     # Increase to 20 for calibration
     nodes = 2
+
+    numberOfBS = 2
+    
+    # Scenario Parameters 
+    radiusBS = 12.5
+    interCellDistance = 25
+    minDistance = 3
+    perBS = True
 
     # Use different seeds for calibration
     seed = 7
@@ -84,14 +93,27 @@ random.seed(Config.seed)
 bsCreator = BSCreator(Config)
 ueCreator = UECreator(Config)
 
-scenario = scenarios.ituM2135.CreatorPlacerBuilderIndoorHotspot(
-    bsCreator, 
-    ueCreator, 
-    numberOfNodes = Config.nodes,
-    transceiverTypes = scenarios.channelmodel.APandUT)
-#end example
+# set BS placer
+alpha = (1.0 / Config.numberOfBS) * 2 * math.pi
+d = Config.interCellDistance
+r = math.sqrt( (d*d) / (2.0 - 2.0 * math.cos(alpha)) )
 
-# begin example "lte.tutorial.experiment1.config"
+bsPlacer = scenarios.placer.CircularPlacer(Config.numberOfBS, r)
+bsPlacer.setCenter(openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
+
+# create scenario
+
+
+scenario = scenarios.builders.CreatorPlacerBuilder(
+    bsCreator, 
+    bsPlacer,
+    scenarios.ituM2135.IndoorHotspotAntennaCreator(),	
+    ueCreator,
+    scenarios.placer.CircularAreaPlacer(Config.nodes, Config.radiusBS, Config.minDistance, Config.perBS), 
+    scenarios.channelmodel.InHNLoSChannelModelCreator())
+
+#setCenter(openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
+
 import openwns.simulator
 
 sim = openwns.simulator.getSimulator()
@@ -135,6 +157,10 @@ eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
 ueNodes = sim.simulationModel.getNodesByProperty("Type", "UE")
 eNBIDs = [node.nodeID for node in eNBNodes]
 ueIDs = [node.nodeID for node in ueNodes]
+
+# Associate UTs to their eNBs
+lte.support.helper.associateByGeometry(sim)
+
 lte.evaluation.default.installEvaluation(sim,
                                          eNBIDs + ueIDs,
                                          eNBIDs,
