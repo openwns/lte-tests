@@ -71,11 +71,11 @@ class Config:
 
     # Change uplink power control parameter (alpha = 1 => full pathloss compensation)
     # Specifications allow values [0.0, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-    alpha = 1.0
+    alpha = 0.0
 
     # Should be increased if alpha is below zero. 
     # Specifications allow values from -126dBm to +23dBm
-    pNull = "-106 dBm"
+    pNull = "4dBm"#"-106 dBm"
 
     dlTraffic = scenarios.traffic.CBR(offset=0.0,
                                       trafficRate=trafficRate,
