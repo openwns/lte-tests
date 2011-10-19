@@ -122,24 +122,29 @@ lte.support.helper.disablePhyUnicastULTransmission(sim, Config.modes)
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
 ueNodes = sim.simulationModel.getNodesByProperty("Type", "UE")
+centerNodes = sim.simulationModel.getNodesByProperty("isCenter", True)
 eNBIDs = [node.nodeID for node in eNBNodes]
 ueIDs = [node.nodeID for node in ueNodes]
+centerIDs = [node.nodeID for node in centerNodes]
+
 lte.evaluation.default.installEvaluation(sim,
-                                         eNBIDs + ueIDs,
+                                         centerIDs,
                                          eNBIDs,
                                          ueIDs,
                                          Config.settlingTime,
                                          maxThroughputPerUE = 20.0e06)
 
+rangNodes = sim.simulationModel.getNodesByProperty("Type", "RANG")
+rangIDs = [node.nodeID for node in rangNodes]
 import applications.evaluation.default
-applications.evaluation.default.installEvaluation(sim, eNBIDs, ueIDs,
+applications.evaluation.default.installEvaluation(sim, centerIDs + rangIDs,
                                                 ['VoIP'], Config.settlingTime)
 
 from openwns.evaluation import *
 sourceName = 'scheduler.persistentvoip.FrameOccupationFairness'
 node = openwns.evaluation.createSourceNode(sim, sourceName)
 node.getLeafs().appendChildren(SettlingTimeGuard(settlingTime = Config.settlingTime))
-node.getLeafs().appendChildren(Accept(by='nodeID', ifIn = eNBIDs + ueIDs, suffix='CenterCell'))
+node.getLeafs().appendChildren(Accept(by='nodeID', ifIn = centerIDs, suffix='CenterCell'))
 node.getLeafs().appendChildren(PDF(name = sourceName,
                                  description = 'Frame Occupation Fairness',
                                  minXValue = 0,

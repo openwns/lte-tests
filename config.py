@@ -130,10 +130,12 @@ lte.support.helper.setupFastFading("InH", Config.modes, rxAntennas = 1)
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
 ueNodes = sim.simulationModel.getNodesByProperty("Type", "UE")
+centerNodes = sim.simulationModel.getNodesByProperty("isCenter", True)
 eNBIDs = [node.nodeID for node in eNBNodes]
 ueIDs = [node.nodeID for node in ueNodes]
+centerIDs = [node.nodeID for node in centerNodes]
 lte.evaluation.default.installEvaluation(sim,
-                                         eNBIDs + ueIDs,
+                                         centerIDs,
                                          eNBIDs,
                                          ueIDs,
                                          Config.settlingTime,
