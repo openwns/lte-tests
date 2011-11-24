@@ -117,7 +117,7 @@ lte.support.helper.createDLVoIPTraffic(sim, settlingTime = Config.settlingTime,
 lte.support.helper.setupULScheduler(sim, "PersistentVoIP", Config.modes)
 lte.support.helper.disablePhyUnicastULTransmission(sim, Config.modes)
 
-#lte.support.helper.setHARQRetransmissionLimit(sim, Config.modes, 20)
+#lte.support.helper.setHARQRetransmissionLimit(sim, Config.modes, 5)
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
@@ -140,18 +140,9 @@ import applications.evaluation.default
 applications.evaluation.default.installEvaluation(sim, centerIDs + rangIDs,
                                                 ['VoIP'], Config.settlingTime)
 
-from openwns.evaluation import *
-sourceName = 'scheduler.persistentvoip.FrameOccupationFairness'
-node = openwns.evaluation.createSourceNode(sim, sourceName)
-node.getLeafs().appendChildren(SettlingTimeGuard(settlingTime = Config.settlingTime))
-node.getLeafs().appendChildren(Accept(by='nodeID', ifIn = centerIDs, suffix='CenterCell'))
-node.getLeafs().appendChildren(PDF(name = sourceName,
-                                 description = 'Frame Occupation Fairness',
-                                 minXValue = 0,
-                                 maxXValue = 1,
-                                 resolution = 100))
-
 import openwns.evaluation.default
+
+openwns.evaluation.default.installPersVoIPSchedulerEvaluation(sim, Config.settlingTime, centerIDs, Config.nodes)
 
 openwns.evaluation.default.installEvaluation(openwns.simulator.getSimulator())
 openwns.simulator.getSimulator().statusWriteInterval = 10 # in seconds realTime
