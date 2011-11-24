@@ -1,0 +1,151 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: PDF
+# ---------------------------------------------------------------------------
+#  Name: scheduler.persistentvoip.NumberOfPDCCHs
+#  Description: Number of PDCCHs
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 0.0000000
+#  Maximum: 2.0000000
+#  Trials: 55
+#  Mean: 0.1454545
+# 
+#  Variance: 0.1636364
+#  Relative variance: 7.7343750
+#  Coefficient of variation: 2.7810744
+#  Standard deviation: 0.4045199
+#  Relative standard deviation: 2.7810744
+# 
+#  Skewness: 2.7398393
+# 
+#  2nd moment: 0.1818182
+#  3rd moment: 0.2545455
+# 
+#  Sum of all values: 8.0000000
+#  (Sum of all values)^2: 10.0000000
+#  (Sum of all values)^3: 14.0000000
+# -----------------------------------------------------------
+# PDF statistics 
+#  Left border of x-axis: 0
+#  Right border of x-axis: 2
+#  Resolution of x-axis: 2
+# -----------------------------------------------------------
+# PDF data 
+#  Underflows: 0
+#  Underflows in percent: 0
+#  Overflows: 0
+#  Overflows in percent: 0
+# -----------------------------------------------------------
+# Percentiles
+#  P01: NaN
+#  P02: NaN
+#  P03: NaN
+#  P04: NaN
+#  P05: NaN
+#  P06: NaN
+#  P07: NaN
+#  P08: NaN
+#  P09: NaN
+#  P10: NaN
+#  P11: NaN
+#  P12: NaN
+#  P13: NaN
+#  P14: NaN
+#  P15: NaN
+#  P16: NaN
+#  P17: NaN
+#  P18: NaN
+#  P19: NaN
+#  P20: NaN
+#  P21: NaN
+#  P22: NaN
+#  P23: NaN
+#  P24: NaN
+#  P25: NaN
+#  P26: NaN
+#  P27: NaN
+#  P28: NaN
+#  P29: NaN
+#  P30: NaN
+#  P31: NaN
+#  P32: NaN
+#  P33: NaN
+#  P34: NaN
+#  P35: NaN
+#  P36: NaN
+#  P37: NaN
+#  P38: NaN
+#  P39: NaN
+#  P40: NaN
+#  P41: NaN
+#  P42: NaN
+#  P43: NaN
+#  P44: NaN
+#  P45: NaN
+#  P46: NaN
+#  P47: NaN
+#  P48: NaN
+#  P49: NaN
+#  P50: NaN
+#  P51: NaN
+#  P52: NaN
+#  P53: NaN
+#  P54: NaN
+#  P55: NaN
+#  P56: NaN
+#  P57: NaN
+#  P58: NaN
+#  P59: NaN
+#  P60: NaN
+#  P61: NaN
+#  P62: NaN
+#  P63: NaN
+#  P64: NaN
+#  P65: NaN
+#  P66: NaN
+#  P67: NaN
+#  P68: NaN
+#  P69: NaN
+#  P70: NaN
+#  P71: NaN
+#  P72: NaN
+#  P73: NaN
+#  P74: NaN
+#  P75: NaN
+#  P76: NaN
+#  P77: NaN
+#  P78: NaN
+#  P79: NaN
+#  P80: NaN
+#  P81: NaN
+#  P82: NaN
+#  P83: NaN
+#  P84: NaN
+#  P85: NaN
+#  P86: NaN
+#  P87: NaN
+#  P88: 0.0666667
+#  P89: 0.1583333
+#  P90: 0.2500000
+#  P91: 0.3416667
+#  P92: 0.4333333
+#  P93: 0.5250000
+#  P94: 0.6166667
+#  P95: 0.7083333
+#  P96: 0.8000000
+#  P97: 0.8916667
+#  P98: 0.9833333
+#  P99: 1.4500000
+#  P100: 2.0000000
+# -----------------------------------------------------------
+# 
+# x_n                  F(x_n)           G(x_n)     P(x_n-1 < X    n
+#                    =P(X<=x_n)       =P(X>x_n)   AND X <= x_n)
+# 
+0.0000000           0.8727273       0.1272727       0.8727273     0
+1.0000000           0.9818182       0.0181818       0.1090909     1
+2.0000000           1.0000000       0.0000000       0.0181818     2
+# -----------------------------------------------------------
