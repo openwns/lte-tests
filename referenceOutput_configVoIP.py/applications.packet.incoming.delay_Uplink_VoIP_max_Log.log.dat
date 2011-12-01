@@ -1,0 +1,11 @@
+# This table contains the max of: applications.packet.incoming.delay_Uplink_VoIP
+# 
+# Dimensions:
+# 
+# Dim 1: 'Appl.SenderId'
+0	0
+1	0
+2	0
+3	0
+4	0.006
+5	0.006

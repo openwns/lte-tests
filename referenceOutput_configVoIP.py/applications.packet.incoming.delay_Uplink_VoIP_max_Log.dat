@@ -2,16 +2,16 @@
 # ---------------------------------------------------------------------------
 # Evaluation: Moments
 # ---------------------------------------------------------------------------
-#  Name: applications.session.incoming.delayLoss
-#  Description: Incoming packets loss ratio
+#  Name: y over Appl.SenderId
+#  Description: y over Appl.SenderId
 # ---------------------------------------------------------------------------
 #  Evaluation terminated successfully!
 # ---------------------------------------------------------------------------
 #  Common Statistics 
-#  Minimum: 0.0000000
-#  Maximum: 0.0000000
-#  Trials: 2
-#  Mean: 0.0000000
+#  Minimum: 0.0060000
+#  Maximum: 0.0060000
+#  Trials: 56
+#  Mean: 0.0060000
 # 
 #  Variance: 0.0000000
 #  Relative variance: 0.0000000
@@ -21,9 +21,9 @@
 # 
 #  Skewness: 0.0000000
 # 
-#  2nd moment: 0.0000000
-#  3rd moment: 0.0000000
+#  2nd moment: 0.0000360
+#  3rd moment: 0.0000002
 # 
-#  Sum of all values: 0.0000000
-#  (Sum of all values)^2: 0.0000000
-#  (Sum of all values)^3: 0.0000000
+#  Sum of all values: 0.3360000
+#  (Sum of all values)^2: 0.0020160
+#  (Sum of all values)^3: 0.0000121
