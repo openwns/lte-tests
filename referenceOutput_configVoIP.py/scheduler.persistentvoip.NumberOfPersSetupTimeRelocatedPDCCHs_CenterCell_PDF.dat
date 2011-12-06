@@ -2,8 +2,8 @@
 # ---------------------------------------------------------------------------
 # Evaluation: PDF
 # ---------------------------------------------------------------------------
-#  Name: scheduler.persistentvoip.NumberOfHARQ_Users
-#  Description: Number of HARQ Users
+#  Name: scheduler.persistentvoip.NumberOfPersSetupTimeRelocatedPDCCHs
+#  Description: Number of Persistent Setup PDCCHs from earlier frames
 # ---------------------------------------------------------------------------
 #  Evaluation terminated successfully!
 # ---------------------------------------------------------------------------

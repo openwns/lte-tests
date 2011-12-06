@@ -1,0 +1,29 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: Moments
+# ---------------------------------------------------------------------------
+#  Name: y over MAC.Id
+#  Description: y over MAC.Id
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 30.0000000
+#  Maximum: 30.0000000
+#  Trials: 16
+#  Mean: 30.0000000
+# 
+#  Variance: 0.0000000
+#  Relative variance: 0.0000000
+#  Coefficient of variation: 0.0000000
+#  Standard deviation: 0.0000000
+#  Relative standard deviation: 0.0000000
+# 
+#  Skewness: 0.0000000
+# 
+#  2nd moment: 900.0000000
+#  3rd moment: 27000.0000000
+# 
+#  Sum of all values: 480.0000000
+#  (Sum of all values)^2: 14400.0000000
+#  (Sum of all values)^3: 432000.0000000
