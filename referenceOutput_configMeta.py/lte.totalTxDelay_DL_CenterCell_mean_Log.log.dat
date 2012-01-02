@@ -1,0 +1,13 @@
+# This table contains the mean of: lte.totalTxDelay_DL_CenterCell
+# 
+# Dimensions:
+# 
+# Dim 1: 'MAC.PeerId'
+0	0
+1	0
+2	0.00378571
+3	0.00378571
+4	0
+5	0
+6	0
+7	0

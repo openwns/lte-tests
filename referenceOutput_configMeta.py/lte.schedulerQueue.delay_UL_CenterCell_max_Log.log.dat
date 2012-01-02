@@ -1,0 +1,13 @@
+# This table contains the max of: lte.schedulerQueue.delay_UL_CenterCell
+# 
+# Dimensions:
+# 
+# Dim 1: 'MAC.Id'
+0	0
+1	0
+2	0
+3	0
+4	0.0024527
+5	0.00206637
+6	0.0027382
+7	0.00239189

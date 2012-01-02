@@ -1,0 +1,29 @@
+#  PROBE RESULTS (THIS IS A MAGIC LINE)
+# ---------------------------------------------------------------------------
+# Evaluation: Moments
+# ---------------------------------------------------------------------------
+#  Name: y over schedUserID
+#  Description: y over schedUserID
+# ---------------------------------------------------------------------------
+#  Evaluation terminated successfully!
+# ---------------------------------------------------------------------------
+#  Common Statistics 
+#  Minimum: 168.0000000
+#  Maximum: 368.0000000
+#  Trials: 6
+#  Mean: 201.3333333
+# 
+#  Variance: 6666.6666667
+#  Relative variance: 0.1644665
+#  Coefficient of variation: 0.4055447
+#  Standard deviation: 81.6496581
+#  Relative standard deviation: 0.4055447
+# 
+#  Skewness: 1.3608276
+# 
+#  2nd moment: 46090.6666667
+#  3rd moment: 12257365.3333333
+# 
+#  Sum of all values: 1208.0000000
+#  (Sum of all values)^2: 276544.0000000
+#  (Sum of all values)^3: 73544192.0000000
