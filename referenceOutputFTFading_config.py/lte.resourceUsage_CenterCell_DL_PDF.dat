@@ -11,22 +11,22 @@
 #  Minimum: 0.0000000
 #  Maximum: 0.2000000
 #  Trials: 1920
-#  Mean: 0.0026667
+#  Mean: 0.0016667
 # 
-#  Variance: 0.0003364
-#  Relative variance: 47.3058885
-#  Coefficient of variation: 6.8779276
-#  Standard deviation: 0.0183411
-#  Relative standard deviation: 6.8779276
+#  Variance: 0.0003307
+#  Relative variance: 119.0620115
+#  Coefficient of variation: 10.9115540
+#  Standard deviation: 0.0181859
+#  Relative standard deviation: 10.9115540
 # 
-#  Skewness: 10.3823071
+#  Skewness: 10.8085926
 # 
-#  2nd moment: 0.0003433
-#  3rd moment: 0.0000668
+#  2nd moment: 0.0003333
+#  3rd moment: 0.0000667
 # 
-#  Sum of all values: 5.1200000
-#  (Sum of all values)^2: 0.6592000
-#  (Sum of all values)^3: 0.1281920
+#  Sum of all values: 3.2000000
+#  (Sum of all values)^2: 0.6400000
+#  (Sum of all values)^3: 0.1280000
 # -----------------------------------------------------------
 # PDF statistics 
 #  Left border of x-axis: 0
@@ -129,24 +129,24 @@
 #  P87: NaN
 #  P88: NaN
 #  P89: NaN
-#  P90: 0.0008333
-#  P91: 0.0018333
-#  P92: 0.0028333
-#  P93: 0.0038333
-#  P94: 0.0048333
-#  P95: 0.0058333
-#  P96: 0.0068333
-#  P97: 0.0078333
-#  P98: 0.0088333
-#  P99: 0.0098333
+#  P90: NaN
+#  P91: NaN
+#  P92: NaN
+#  P93: NaN
+#  P94: NaN
+#  P95: NaN
+#  P96: NaN
+#  P97: NaN
+#  P98: NaN
+#  P99: NaN
 #  P100: 0.2000000
 # -----------------------------------------------------------
 # 
 # x_n                  F(x_n)           G(x_n)     P(x_n-1 < X    n
 #                    =P(X<=x_n)       =P(X>x_n)   AND X <= x_n)
 # 
-0.0000000           0.8916667       0.1083333       0.8916667     0
-0.0100000           0.9916667       0.0083333       0.1000000     1
+0.0000000           0.9916667       0.0083333       0.9916667     0
+0.0100000           0.9916667       0.0083333       0.0000000     1
 0.0200000           0.9916667       0.0083333       0.0000000     2
 0.0300000           0.9916667       0.0083333       0.0000000     3
 0.0400000           0.9916667       0.0083333       0.0000000     4
