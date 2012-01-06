@@ -1,4 +1,4 @@
-###############################################################################
+################################################################################
 # This file is part of openWNS (open Wireless Network Simulator)
 # _____________________________________________________________________________
 #
@@ -93,10 +93,6 @@ sim.rng.seed = Config.seed
 # DHCP, ARP, DNS for IP
 ip.BackboneHelpers.createIPInfrastructure(sim, "LTERAN")
 
-# begin example "lte.tutorial.experiment1.APC"
-lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = Config.pNull)
-#end example
-
 # begin example "lte.tutorial.experiment1.ft"
 #lte.support.helper.setupFTFading(sim, "InH", Config.modes)
 # end example
@@ -117,7 +113,11 @@ lte.support.helper.createDLVoIPTraffic(sim, settlingTime = Config.settlingTime,
 lte.support.helper.setupULScheduler(sim, "PersistentVoIP", Config.modes)
 lte.support.helper.disablePhyUnicastULTransmission(sim, Config.modes)
 
-#lte.support.helper.setHARQRetransmissionLimit(sim, Config.modes, 5)
+lte.support.helper.setupDLScheduler(sim, "PersistentVoIP", Config.modes)
+
+lte.support.helper.setupPersistentVoIPScheduler(sim, "All", "First", True, Config.modes)
+
+lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = Config.pNull)
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")

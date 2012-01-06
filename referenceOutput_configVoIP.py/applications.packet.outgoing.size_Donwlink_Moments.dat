@@ -9,21 +9,21 @@
 # ---------------------------------------------------------------------------
 #  Common Statistics 
 #  Minimum: 136.0000000
-#  Maximum: 136.0000000
-#  Trials: 10
-#  Mean: 136.0000000
+#  Maximum: 340.0000000
+#  Trials: 53
+#  Mean: 320.7547170
 # 
-#  Variance: 0.0000000
-#  Relative variance: 0.0000000
-#  Coefficient of variation: 0.0000000
-#  Standard deviation: 0.0000000
-#  Relative standard deviation: 0.0000000
+#  Variance: 3624.0348331
+#  Relative variance: 0.0352246
+#  Coefficient of variation: 0.1876822
+#  Standard deviation: 60.1999571
+#  Relative standard deviation: 0.1876822
 # 
-#  Skewness: 0.0000000
+#  Skewness: -2.6974540
 # 
-#  2nd moment: 18496.0000000
-#  3rd moment: 2515456.0000000
+#  2nd moment: 106439.2452830
+#  3rd moment: 35833382.6415094
 # 
-#  Sum of all values: 1360.0000000
-#  (Sum of all values)^2: 184960.0000000
-#  (Sum of all values)^3: 25154560.0000000
+#  Sum of all values: 17000.0000000
+#  (Sum of all values)^2: 5641280.0000000
+#  (Sum of all values)^3: 1899169280.0000000
