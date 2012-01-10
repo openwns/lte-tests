@@ -114,35 +114,40 @@ lte.support.helper.setupULScheduler(sim, "PersistentVoIP", Config.modes)
 lte.support.helper.disablePhyUnicastULTransmission(sim, Config.modes)
 
 lte.support.helper.setupDLScheduler(sim, "PersistentVoIP", Config.modes)
+lte.support.helper.setHARQRetransmissionLimit(sim, Config.modes, 6)
 
 lte.support.helper.setupPersistentVoIPScheduler(sim, "All", "First", True, Config.modes)
 
+# Must be called in this order after setupXXScheduler
 lte.support.helper.setupUL_APC(sim, Config.modes, alpha = Config.alpha, pNull = Config.pNull)
+lte.support.helper.setupPhy(sim, Config.modes, 'InH')
 
 import lte.evaluation.default
 eNBNodes = sim.simulationModel.getNodesByProperty("Type", "eNB")
 ueNodes = sim.simulationModel.getNodesByProperty("Type", "UE")
-centerNodes = sim.simulationModel.getNodesByProperty("isCenter", True)
 eNBIDs = [node.nodeID for node in eNBNodes]
 ueIDs = [node.nodeID for node in ueNodes]
+
+centerNodes = sim.simulationModel.getNodesByProperty("isCenter", True)
 centerIDs = [node.nodeID for node in centerNodes]
 
+centeNBIDs = filter(lambda x:x in eNBIDs, centerIDs)
+
 lte.evaluation.default.installEvaluation(sim,
-                                         centerIDs,
-                                         eNBIDs,
+                                         eNBIDs + ueIDs,
+                                         centeNBIDs,
                                          ueIDs,
                                          Config.settlingTime,
-                                         maxThroughputPerUE = 20.0e06)
+                                         maxThroughputPerUE = 20.0e06,
+                                         byCellId = True)
 
-rangNodes = sim.simulationModel.getNodesByProperty("Type", "RANG")
-rangIDs = [node.nodeID for node in rangNodes]
 import applications.evaluation.default
-applications.evaluation.default.installEvaluation(sim, centerIDs + rangIDs,
-                                                ['VoIP'], Config.settlingTime)
+applications.evaluation.default.installEvaluation(sim, centeNBIDs,
+                                                ['VoIP'], Config.settlingTime, Config.nodes, False, True)
 
 import openwns.evaluation.default
 
-openwns.evaluation.default.installPersVoIPSchedulerEvaluation(sim, Config.settlingTime, centerIDs, Config.nodes)
+openwns.evaluation.default.installPersVoIPSchedulerEvaluation(sim, Config.settlingTime, centeNBIDs, Config.nodes)
 
 openwns.evaluation.default.installEvaluation(openwns.simulator.getSimulator())
 openwns.simulator.getSimulator().statusWriteInterval = 10 # in seconds realTime
